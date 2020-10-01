@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_form_inherit_account_extended" model="ir.ui.view">
+            <field name="name">account.payment.form.inherit.account.extended</field>
+            <field name="model">account.payment</field>
+            <field name="priority" eval="40"/>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='journal_id']" position="after">
+                    <field name="payment_has_exchange_rate" groups="base.group_multi_currency"/>
+                    <field name="payment_exchange_rate" groups="base.group_multi_currency"
+                           attrs="{'invisible': [('payment_has_exchange_rate','=',False)]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='amount']" position="after">
+                    <field name="amount_signed" groups="base.group_multi_currency" readonly="True"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

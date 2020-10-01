@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_move_form_inherit_account_extended" model="ir.ui.view">
+            <field name="name">account.move.form.inherit.account.extended</field>
+            <field name="model">account.move</field>
+            <field name="priority" eval="40"/>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='currency_id']" position="before">
+
+                    <field name="invoice_has_exchange_rate" groups="base.group_multi_currency"/>
+                    <field name="invoice_exchange_rate" groups="base.group_multi_currency"
+                           attrs="{'invisible': [('invoice_has_exchange_rate','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="account_move_form" model="ir.ui.view">
+            <field name="name">account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='button_draft']" position="after">
+                    <button name="button_comparation" string="Calculate taxes" type="object" groups="account.group_account_invoice" 
+                        attrs="{'invisible' : [('state', 'in', ('posted', 'cancel'))]}" help="Calculate the tax base" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
